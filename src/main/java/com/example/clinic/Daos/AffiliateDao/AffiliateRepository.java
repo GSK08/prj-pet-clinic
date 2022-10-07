@@ -13,6 +13,6 @@ public interface AffiliateRepository extends JpaRepository<Affiliate, Long> {
     @Query("SELECT a FROM Affiliate a where a.email = :mail")
     Affiliate checkAffiliateByEmail(@Param("mail") String mail);
 
-    @Query("SELECT a from Affiliate a where a.email =: mail and a.password =: password")
+    @Query("SELECT a from Affiliate a where a.email = :mail AND a.password = :password")
     Affiliate affiliateSignIn(@Param("mail") String mail, @Param("password") String password);
 }

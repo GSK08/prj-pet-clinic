@@ -6,6 +6,7 @@ import com.example.clinic.Dtos.AffiliateDto;
 import com.example.clinic.Dtos.PetDto;
 import com.example.clinic.EntityManager.EntityManager;
 import com.example.clinic.Requests.AffiliateRegisterRequest;
+import com.example.clinic.Requests.AffiliateSignInRequest;
 import com.example.clinic.Requests.PetRequest;
 import com.example.clinic.exceptions.PetNotFoundException;
 import com.example.clinic.model.Affiliate;
@@ -71,6 +72,13 @@ public class AppFacade {
         AffiliateDto register = affiliateService.Register(ConvertedAffiliate);
         log.info("Registered affiliate {}", register);
         return manager.EntityOnCreated(register);
+    }
+
+    public boolean singIn(AffiliateSignInRequest request){
+        log.info("Trying to register affiliate {}",request);
+        Affiliate affiliate = affiliateService.CheckAffiliateByEmail(request.getEmail())
+                .orElseThrow(() ->new RuntimeException("Affiliate with this email is not registered"));
+        return affiliateService.SignIn(affiliate.getEmail(), affiliate.getPassword());
     }
 
 }

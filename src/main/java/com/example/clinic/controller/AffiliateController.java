@@ -2,6 +2,7 @@ package com.example.clinic.controller;
 
 import com.example.clinic.Dtos.AffiliateDto;
 import com.example.clinic.Requests.AffiliateRegisterRequest;
+import com.example.clinic.Requests.AffiliateSignInRequest;
 import com.example.clinic.facade.AppFacade;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,5 +19,10 @@ public class AffiliateController {
     @PostMapping
     public ResponseEntity<AffiliateDto> register(@RequestBody AffiliateRegisterRequest request){
         return appFacade.signUp(request);
+    }
+
+    @GetMapping
+    public boolean signIn(@RequestBody AffiliateSignInRequest request){
+        return appFacade.singIn(request);
     }
 }

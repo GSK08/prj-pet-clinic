@@ -2,7 +2,7 @@ package com.example.clinic.Daos.AffiliateDao;
 
 import com.example.clinic.Dtos.AffiliateDto;
 import com.example.clinic.Dtos.AffiliatePetDto;
-import com.example.clinic.model.Affiliate;g
+import com.example.clinic.model.Affiliate;
 
 import java.util.List;
 import java.util.Optional;
