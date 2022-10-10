@@ -3,6 +3,7 @@ package com.example.clinic.facade;
 import com.example.clinic.Daos.AffiliateDao.AffiliateService;
 import com.example.clinic.Daos.petDao.PetService;
 import com.example.clinic.Dtos.AffiliateDto;
+import com.example.clinic.Dtos.AffiliatePetDto;
 import com.example.clinic.Dtos.PetDto;
 import com.example.clinic.EntityManager.EntityManager;
 import com.example.clinic.Requests.AffiliateRegisterRequest;
@@ -79,6 +80,14 @@ public class AppFacade {
         Affiliate affiliate = affiliateService.CheckAffiliateByEmail(request.getEmail())
                 .orElseThrow(() ->new RuntimeException("Affiliate with this email is not registered"));
         return affiliateService.SignIn(affiliate.getEmail(), affiliate.getPassword());
+    }
+
+    public List<AffiliatePetDto> listAffiliatePets(String AffiliateMail){
+        Affiliate affiliate = affiliateService.CheckAffiliateByEmail(AffiliateMail)
+                .orElseThrow(() -> new IllegalArgumentException("Affiliate with this mail doesn't exist!"));
+        List<AffiliatePetDto> petsAddedByAffiliate = affiliateService.listPetsAddedByAffiliate(AffiliateMail);
+        log.info("Retrieving pets for affiliate {}", affiliate);
+        return petsAddedByAffiliate;
     }
 
 }

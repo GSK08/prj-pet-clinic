@@ -67,7 +67,6 @@ public class Affiliate implements Serializable {
                 ", gender=" + gender +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", pets=" + pets +
                 '}';
     }
 }
