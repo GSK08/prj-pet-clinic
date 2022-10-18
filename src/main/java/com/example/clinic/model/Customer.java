@@ -3,7 +3,6 @@ package com.example.clinic.model;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -19,54 +18,53 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "AFFILIATE")
+@Table(name = "Customer")
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-public class Affiliate implements Serializable {
+public class Customer implements Serializable {
     @Id
     @SequenceGenerator(
-            name = "affiliate_sequence",
-            sequenceName = "affiliate_sequence",
+            name = "user_sequence",
+            sequenceName = "user_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "affiliate_sequence"
+            generator = "user_sequence"
     )
     private Long id;
-    @Column(name = "affiliate_email")
-    private String email;
-    @Column(name = "affiliate_password")
-    private String password;
-    @Enumerated(EnumType.STRING)
-    @Column(name = "affiliate_gender")
-    private Gender gender;
-    @Column(name = "affiliate_name")
+    @Column(name = "user_name")
     private String name;
-    @Column(name = "affiliate_surname")
+    @Column(name = "user_surname")
     private String surname;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "user_gender")
+    private Gender gender;
+    @Column(name = "user_email")
+    private String email;
+    @Column(name = "user_password")
+    private String password;
     @OneToMany
-    @JoinColumn(name = "affiliate_id")
+    @JoinColumn(name = "user_id")
     private List<Pet> pets;
 
-    public Affiliate(String email, String password, Gender gender, String name, String surname) {
+    public Customer(String name, String surname, String email, String password, Gender gender) {
+        this.name = name;
+        this.surname = surname;
         this.email = email;
         this.password = password;
         this.gender = gender;
-        this.name = name;
-        this.surname = surname;
     }
 
     @Override
     public String toString() {
-        return "Affiliate{" +
-                "id=" + id +
+        return "User{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", gender=" + gender +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", gender=" + gender +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
                 '}';
     }
 }

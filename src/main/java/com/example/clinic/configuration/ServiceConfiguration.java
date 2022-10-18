@@ -3,6 +3,7 @@ package com.example.clinic.configuration;
 import com.example.clinic.Daos.AffiliateDao.AffiliateRepository;
 import com.example.clinic.Daos.AffiliateDao.AffiliateService;
 import com.example.clinic.Daos.AffiliateDao.AffiliateServiceImp;
+import com.example.clinic.Daos.UserDao.UserService;
 import com.example.clinic.Daos.petDao.PetRepository;
 import com.example.clinic.Daos.petDao.PetService;
 import com.example.clinic.Daos.petDao.PetServiceImp;
@@ -18,12 +19,14 @@ public class ServiceConfiguration {
 
     private final PetRepository petRepository;
     private final AffiliateRepository affiliateRepository;
+    private final UserService userService;
 
     @Autowired
     ServiceConfiguration(PetRepository repository,
-                         AffiliateRepository affiliateRepository){
+                         AffiliateRepository affiliateRepository, UserService userService){
         this.petRepository =  repository;
         this.affiliateRepository = affiliateRepository;
+        this.userService = userService;
     }
 
     @Bean

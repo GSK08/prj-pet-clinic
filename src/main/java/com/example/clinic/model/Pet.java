@@ -51,6 +51,9 @@ public class Pet implements Serializable {
     @ManyToOne
     @JoinColumn(name = "affiliate_id")
     private Affiliate affiliate;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private Customer customer;
 
     public Pet(String name, int age, PetType petType) {
         this.name = name;

@@ -6,8 +6,12 @@ import com.example.clinic.Requests.AffiliateRegisterRequest;
 import com.example.clinic.Requests.AffiliateSignInRequest;
 import com.example.clinic.facade.AppFacade;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
@@ -20,17 +24,17 @@ public class AffiliateController {
     }
 
     @PostMapping
-    public ResponseEntity<AffiliateDto> register(@RequestBody AffiliateRegisterRequest request){
+    public ResponseEntity<AffiliateDto> register(@RequestBody AffiliateRegisterRequest request) {
         return appFacade.signUp(request);
     }
 
     @GetMapping("/pets")
-    public List<AffiliatePetDto> getPetsAddedByAffiliate(@RequestParam String affiliateMail){
+    public List<AffiliatePetDto> getPetsAddedByAffiliate(@RequestParam String affiliateMail) {
         return appFacade.listAffiliatePets(affiliateMail);
     }
 
     @GetMapping
-    public boolean signIn(@RequestBody AffiliateSignInRequest request){
+    public boolean signIn(@RequestBody AffiliateSignInRequest request) {
         return appFacade.singIn(request);
     }
 }
