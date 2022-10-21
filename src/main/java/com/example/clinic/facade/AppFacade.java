@@ -1,6 +1,8 @@
 package com.example.clinic.facade;
 
 import com.example.clinic.Daos.AffiliateDao.AffiliateService;
+import com.example.clinic.Daos.UserDao.CustomerRepository;
+import com.example.clinic.Daos.UserDao.CustomerService;
 import com.example.clinic.Daos.petDao.PetService;
 import com.example.clinic.Dtos.AffiliateDto;
 import com.example.clinic.Dtos.AffiliatePetDto;
@@ -25,6 +27,7 @@ public class AppFacade {
 
     private final PetService petService;
     private final AffiliateService affiliateService;
+    private final CustomerService customerService;
     private final EntityManager manager;
 
     public ResponseEntity<List<PetDto>> listAllPets(){

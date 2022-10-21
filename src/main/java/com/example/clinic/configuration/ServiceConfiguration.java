@@ -3,7 +3,9 @@ package com.example.clinic.configuration;
 import com.example.clinic.Daos.AffiliateDao.AffiliateRepository;
 import com.example.clinic.Daos.AffiliateDao.AffiliateService;
 import com.example.clinic.Daos.AffiliateDao.AffiliateServiceImp;
-import com.example.clinic.Daos.UserDao.UserService;
+import com.example.clinic.Daos.UserDao.CustomerRepository;
+import com.example.clinic.Daos.UserDao.CustomerService;
+import com.example.clinic.Daos.UserDao.CustomerServiceImpl;
 import com.example.clinic.Daos.petDao.PetRepository;
 import com.example.clinic.Daos.petDao.PetService;
 import com.example.clinic.Daos.petDao.PetServiceImp;
@@ -19,19 +21,22 @@ public class ServiceConfiguration {
 
     private final PetRepository petRepository;
     private final AffiliateRepository affiliateRepository;
-    private final UserService userService;
+    private final CustomerRepository customerRepository;
+    private final CustomerService userService;
 
     @Autowired
     ServiceConfiguration(PetRepository repository,
-                         AffiliateRepository affiliateRepository, UserService userService){
+                         AffiliateRepository affiliateRepository, CustomerRepository customerRepository, CustomerService userService){
         this.petRepository =  repository;
         this.affiliateRepository = affiliateRepository;
+        this.customerRepository = customerRepository;
         this.userService = userService;
     }
 
     @Bean
     public AppFacade getFacade(){
-        return new AppFacade(getPetService(), getAffiliateService(), new EntityManager());
+        return new AppFacade(getPetService(), getAffiliateService(),
+                getCustomerService(), new EntityManager());
     }
 
     private PetService getPetService(){
@@ -40,6 +45,10 @@ public class ServiceConfiguration {
 
     private AffiliateService getAffiliateService(){
         return new AffiliateServiceImp(affiliateRepository);
+    }
+
+    private CustomerService getCustomerService(){
+        return new CustomerServiceImpl(customerRepository);
     }
 
 }
