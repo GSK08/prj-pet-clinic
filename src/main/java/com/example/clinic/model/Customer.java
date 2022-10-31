@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -41,6 +42,8 @@ public class Customer implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "user_gender")
     private Gender gender;
+    @Column(name = "registration_time")
+    private LocalDateTime registrationTime = LocalDateTime.now();
     @Column(name = "user_email")
     private String email;
     @Column(name = "user_password")

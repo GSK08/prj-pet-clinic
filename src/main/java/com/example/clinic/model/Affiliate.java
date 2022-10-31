@@ -3,7 +3,6 @@ package com.example.clinic.model;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -16,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -42,6 +42,8 @@ public class Affiliate implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "affiliate_gender")
     private Gender gender;
+    @Column(name = "registration_time")
+    private LocalDateTime registrationTime = LocalDateTime.now();
     @Column(name = "affiliate_name")
     private String name;
     @Column(name = "affiliate_surname")
